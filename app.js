@@ -4,12 +4,19 @@ var path = require('path');
 var logger = require('morgan');
 
 var app = express();
+
+const {log} = require("./core/utils/logger");
 //
 // // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'pug');
 
 const discord = require('./core/discord/discord');
+
+const scheduledTask = require('./core/discord/timerTask');
+
+scheduledTask();
+log('msg', "Scheduled tasks running.");
 
 app.use(logger('dev'));
 

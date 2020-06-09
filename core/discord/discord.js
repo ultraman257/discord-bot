@@ -8,8 +8,10 @@ const client = new Discord.Client();
 const cooldowns = new Discord.Collection();
 client.commands = new Discord.Collection();
 
+// Get the contents of the commands folder
 const commandFiles = fs.readdirSync('./core/discord/commands');
 
+// Require all the commands and add to a collection
 for (const file of commandFiles) {
     const command = require("./commands/" + file);
     client.commands.set(command.name, command);
@@ -113,6 +115,7 @@ client.on('message', msg => {
 function print(args) {
     console.log(args);
 }
+
 
 module.exports = client;
 
