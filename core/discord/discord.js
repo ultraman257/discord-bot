@@ -3,6 +3,7 @@ const fs = require('fs');
 const moment = require('moment');
 
 const log = require('../utils/logger').log;
+const token = require('../config').token;
 
 const client = new Discord.Client();
 const cooldowns = new Discord.Collection();
@@ -119,4 +120,4 @@ function print(args) {
 
 module.exports = client;
 
-client.login(process.env.TOKEN);
+client.login(token);

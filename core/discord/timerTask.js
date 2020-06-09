@@ -6,6 +6,8 @@ const client = require('./discord');
 const loggerUtil = require('../utils/logger');
 const log = loggerUtil.log;
 
+let nextMessage = require('../randomDelay').nextMessage;
+
 function scheduledTask() {
 
     setInterval(function() {
@@ -25,8 +27,22 @@ function randomMessage() {
 
         if (chanel) {
 
-            log('debug', "I found it!");
-            chanel.send("https://matthewthaskins.com/img/matthew-home.png")
+            if(moment().isAfter(nextMessage) || nextMessage == null) {
+                log('debug', "Latifa!");
+
+                let delay = Math.floor(Math.random() * 120) + 1;
+
+                chanel.send("I am king latifa (" + delay  + ")");
+
+                // Next random delay.
+                nextMessage = moment().add(delay, "s");
+            } else {
+                log('debug', "Wait for it...");
+            }
+
+
+
+
         }
 
     }
